@@ -28,7 +28,7 @@
     "note": "JAX CPU benchmark on Transwarp Cognitive_General_Starter"
   },
   {
-    "timestamp": "2026-08-29T13:23:35Z",
+    "timestamp": "2026-08-29T14:14:00Z",
     "platform": "transwarp_notebook_cognitive_general_starter",
     "device": "gpu",
     "backend": null,
@@ -39,6 +39,6 @@
     "min_sec": null,
     "max_sec": null,
     "gpu_available": false,
-    "note": "No GPU devices visible to JAX. Only CPU backend present in the notebook compute. Data Warehouse GPU clusters (DW-G2-1, G2*1) are SQL engines and cannot run arbitrary JAX/Python."
+    "note": "No GPU-backed general compute accessible to JAX. The notebook Python kernel (Cognitive_General_Starter) only exposes CPU. Existing GPU clusters (DW-G2-1, G2*1) are Data Warehouse SQL engines (psql/JDBC) and cannot run arbitrary Python/JAX."
   }
 ]

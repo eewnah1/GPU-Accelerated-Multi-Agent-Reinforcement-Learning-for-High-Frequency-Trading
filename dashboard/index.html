@@ -267,7 +267,8 @@ python3 gymnax_exchange/jaxrl/MARL/ippo_rnn_JAXMARL.py \
       } else {
         gpuBig.textContent = 'No';
         gpuBig.className = 'big status-bad';
-        gpuNote.textContent = 'Only CPU backend visible to JAX';
+        const fallback = 'Only CPU backend visible to JAX';
+        gpuNote.textContent = (gpuRows[0]?.note) || fallback;
       }
 
       // CPU chart
