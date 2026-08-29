@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: jaxmarl-hft-dashboard
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./dashboard
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    previews:
+      generation: off
