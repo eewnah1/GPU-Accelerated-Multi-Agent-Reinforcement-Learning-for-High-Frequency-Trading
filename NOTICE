@@ -1,0 +1,21 @@
+This repository is a working copy of JaxMARL-HFT.
+
+Upstream source:
+  https://github.com/vmohl/JaxMARL-HFT
+
+Copyright 2025 The JaxMARL-HFT Authors
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file in this repository.
+
+Paper:
+  Mohl, Valentin, Sascha Frey, Reuben Leyland, Kang Li, George Nigmatulin,
+  Mihai Cucuringu, Stefan Zohren, Jakob Foerster, and Anisoara Calinescu.
+  "JaxMARL-HFT: GPU-Accelerated Large-Scale Multi-Agent Reinforcement
+  Learning for High-Frequency Trading." Proceedings of the 6th ACM
+  International Conference on AI in Finance (ICAIF), 2025, pp. 18-26.
+  https://doi.org/10.1145/3768292.3770416
+
+JaxMARL-HFT builds on:
+  - JaxMARL  https://github.com/FLAIROx/JaxMARL
+  - JAX-LOB  https://github.com/KangOxford/jax-lob
