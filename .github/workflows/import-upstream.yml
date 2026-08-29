@@ -1,0 +1,79 @@
+name: Import JaxMARL-HFT upstream
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Clone upstream and copy source tree
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/vmohl/JaxMARL-HFT.git /tmp/jaxmarl-hft
+          rsync -a --delete --exclude '.git/' --exclude '.github/' /tmp/jaxmarl-hft/ .
+          # Keep destination provenance files if present; recreate if upstream overwrote them.
+          cat > NOTICE << 'EOF'
+          This repository is a working copy of JaxMARL-HFT.
+
+          Upstream source:
+            https://github.com/vmohl/JaxMARL-HFT
+
+          Copyright 2025 The JaxMARL-HFT Authors
+
+          Licensed under the Apache License, Version 2.0.
+          See the LICENSE file in this repository.
+
+          Paper:
+            Mohl, Valentin, Sascha Frey, Reuben Leyland, Kang Li, George Nigmatulin,
+            Mihai Cucuringu, Stefan Zohren, Jakob Foerster, and Anisoara Calinescu.
+            "JaxMARL-HFT: GPU-Accelerated Large-Scale Multi-Agent Reinforcement
+            Learning for High-Frequency Trading." Proceedings of the 6th ACM
+            International Conference on AI in Finance (ICAIF), 2025, pp. 18-26.
+            https://doi.org/10.1145/3768292.3770416
+
+          JaxMARL-HFT builds on:
+            - JaxMARL  https://github.com/FLAIROx/JaxMARL
+            - JAX-LOB  https://github.com/KangOxford/jax-lob
+          EOF
+          python3 - << 'PY'
+          from pathlib import Path
+          p = Path('README.md')
+          text = p.read_text(encoding='utf-8')
+          banner = (
+              '# GPU-Accelerated Multi-Agent Reinforcement Learning for High-Frequency Trading\n\n'
+              'Working copy of [vmohl/JaxMARL-HFT](https://github.com/vmohl/JaxMARL-HFT) '
+              '(Apache License 2.0) for development under `eewnah1`. '
+              'Original copyright, license, citation, and attribution are retained. '
+              'See `NOTICE` and `LICENSE`.\n\n'
+          )
+          if text.startswith('# JaxMARL-HFT'):
+              text = text.replace(
+                  '# JaxMARL-HFT: GPU-Accelerated Multi-Agent Reinforcement Learning for High-Frequency Trading\n\n',
+                  banner,
+                  1,
+              )
+              p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit and push imported tree
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Import vmohl/JaxMARL-HFT working copy with Apache-2.0 attribution retained.'
+          git push origin HEAD:main
