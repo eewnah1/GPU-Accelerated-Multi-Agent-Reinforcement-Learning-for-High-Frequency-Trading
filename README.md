@@ -1,8 +1,12 @@
 # GPU-Accelerated Multi-Agent Reinforcement Learning for High-Frequency Trading
 
-Working copy of [vmohl/JaxMARL-HFT](https://github.com/vmohl/JaxMARL-HFT) (Apache License 2.0) for development under `eewnah1`. Original copyright, license, citation, and attribution are retained. See `NOTICE` and `LICENSE`.
+`eewnah1/GPU-Accelerated-Multi-Agent-Reinforcement-Learning-for-High-Frequency-Trading` is an actively maintained fork/development branch of [vmohl/JaxMARL-HFT](https://github.com/vmohl/JaxMARL-HFT), extended and maintained by `eewnah1`. Original copyright, license, citation, and attribution are retained. See `NOTICE` and `LICENSE`.
 
 A JAX-based framework for multi-agent reinforcement learning for high-frequency trading, based on the [JAX-LOB simulator](https://github.com/KangOxford/jax-lob) and an extension of [JaxMARL](https://github.com/FLAIROx/JaxMARL) to the financial trading domain.
+
+## About this fork
+
+This repository is an actively maintained fork and development branch by `eewnah1`. It builds on the upstream JaxMARL-HFT work while adding project-specific extensions, configurations, and benchmarks. Original copyright, license, citation, and attribution remain intact (see `NOTICE` and `LICENSE`).
 
 ## Key Features
 
